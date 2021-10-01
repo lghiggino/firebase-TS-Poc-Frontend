@@ -1,4 +1,4 @@
-import { useState } from 'react'
+import { useMemo, useState } from 'react'
 import type { NextPage } from 'next'
 import Head from 'next/head'
 import Link from 'next/link'
@@ -9,9 +9,14 @@ import styles from '../styles/Home.module.css'
 import { UserContext } from '../src/contexts/userContext'
 import About from './About'
 import Test from './Test'
+import Login from './Login'
 
 const Home: NextPage = () => {
   const [navigation, setNavigationTo] = useState("")
+  const [value, setValue] = useState("")
+
+  const providerValue = useMemo(() => ({ value, setValue }), [value, setValue])
+
   return (
     <div className={styles.container}>
       <Head>
@@ -26,14 +31,16 @@ const Home: NextPage = () => {
             <ul>
               <li onClick={() => { setNavigationTo("about") }}>about</li>
               <li onClick={() => { setNavigationTo("test") }}>test</li>
+              <li onClick={() => { setNavigationTo("login") }}>login</li>
             </ul>
           </nav>
         </header>
 
-        <UserContext.Provider value="hello from context">
+        <UserContext.Provider value={providerValue}>
           {navigation === "" && <div> Hello</div>}
           {navigation === "about" && <About />}
           {navigation === "test" && <Test />}
+          {navigation === "login" && <Login />}
         </UserContext.Provider>
 
       </main>
