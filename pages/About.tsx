@@ -2,14 +2,14 @@ import { useContext } from "react"
 import { UserContext } from "../src/contexts/userContext"
 
 export default function About() {
-    const { value, setValue } = useContext(UserContext)
+    const { user, setUser } = useContext(UserContext)
 
     return (
         <div>
-            <h2>About {value}</h2>
-            <button onClick={() => { setValue("abouting...") }}>
-                change context value
-            </button>
+            <h2>About</h2>
+            {user &&
+                <pre>{JSON.stringify(user, null, 4)}</pre>
+            }
         </div>
     )
 }

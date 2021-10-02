@@ -5,8 +5,7 @@ type UserProps = {
     name: string;
     email: string;
 }
-
-async function login() {
+export const login = async () => {
     return {
         id: "3",
         name: "robert",
@@ -14,4 +13,3 @@ async function login() {
     }
 }
 
-export default login

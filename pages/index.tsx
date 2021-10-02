@@ -13,9 +13,9 @@ import Login from './Login'
 
 const Home: NextPage = () => {
   const [navigation, setNavigationTo] = useState("")
-  const [value, setValue] = useState("")
 
-  const providerValue = useMemo(() => ({ value, setValue }), [value, setValue])
+  const [user, setUser] = useState(null)
+  const providerValue = useMemo(() => ({ user, setUser }), [user, setUser])
 
   return (
     <div className={styles.container}>
