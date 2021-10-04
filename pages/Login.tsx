@@ -12,10 +12,19 @@ export default function Login() {
                 <pre>{JSON.stringify(user, null, 4)}</pre>
             }
             <button onClick={async () => {
-                const user = await login()
-                setUser(user)
+                if (!user) {
+                    try {
+                        const user = await login()
+                        setUser(user)
+                    }catch(error){
+                        console.log(error)
+                    }
+                }else{
+                    setUser("")
+                }
+
             }}>
-                login
+                {user ? "logout" : "login"}
             </button>
         </div>
     )
